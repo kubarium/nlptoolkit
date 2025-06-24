@@ -160,6 +160,11 @@ const items = ref<TabsItem[]>([
     label: 'Password'
   }
 ])
+onMounted(() => {
+  console.log('TurkishFrameNet mounted');
+  fetch('/api/TurkishFrameNet').then(res => res.json()).then(data => console.log(data))
+  console.log('TurkishFrameNet data has been fetched');
+})
 </script>
 <template>
   <div class="flex flex-col gap-6 p-6 h-screen overflow-clip1">
@@ -181,7 +186,7 @@ const items = ref<TabsItem[]>([
           <UBadge>Badge</UBadge>
         </div>
         Lexical Units
-        <UTable :data="data" class="flex-grow h-fit"  sticky />
+        <UTable :data="data" class="flex-grow h-fit" sticky />
       </div>
     </div>
   </div>
