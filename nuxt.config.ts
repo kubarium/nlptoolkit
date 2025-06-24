@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   typescript: {
     typeCheck: true,
     strict: false,
+    includeWorkspace: true,
   },
   css: ["~/assets/css/main.css"],
   vite: {
