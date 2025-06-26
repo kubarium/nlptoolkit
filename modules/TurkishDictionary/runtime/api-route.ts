@@ -1,6 +1,6 @@
 import { TxtDictionary } from "nlptoolkit-dictionary/dist/Dictionary/TxtDictionary.js";
 import { TxtWord } from "nlptoolkit-dictionary/dist/Dictionary/TxtWord.js";
-// import { TxtDictionary, TxtWord } from "nlptoolkit-dictionary";
+
 const turkishDictionary = new TxtDictionary();
 
 export default defineEventHandler((event) => {

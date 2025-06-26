@@ -19,26 +19,7 @@ async function findWord(word: string) {
       <SearchForm v-model="searchTerms.word" @submit.prevent="findWord(searchTerms.word)">Word</SearchForm>
     </header>
     <template v-if="search">
-      <div class="flex flex-col items-center">{{ searchResult }}
-        <!-- <template v-if="searchResult">
-          <p v-if="sentimentScore > 0">
-            Sentiment for <span class="italic">{{ search }}</span> is
-            <span class="text-green-500 font-bold">positive</span>
-            with a score <span class="font-bold">{{ sentimentScore }}</span>.
-          </p>
-          <p v-else-if="sentimentScore < 0">
-            Sentiment for <span class="italic">{{ search }}</span> is
-            <span class="text-red-500 font-bold">negative</span>
-            with a score <span class="font-bold">{{ sentimentScore }}</span>.
-          </p>
-          <p v-else>
-            Sentiment for {{ search }} is <span class="text-zinc-500">neutral</span>.
-          </p>
-        </template>
-<template v-else>
-          No results for {{ search }}
-        </template> -->
-      </div>
+      <div class="flex flex-col items-center">{{ searchResult }}</div>
     </template>
   </div>
 </template>
