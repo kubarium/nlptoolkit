@@ -12,8 +12,8 @@ const menu_labels = {
   }
 }
 const create_menu_items = (language: string, section: string) => {
-  return menu_labels[language][section].map((item) => {
-    return { label: item, to: `/${language}${item}`, value: `${language} ${item}` }
+  return menu_labels[language][section].map((item:string) => {
+    return { label: item, to: `/${language}${item.replace(/ /g, '')}`, value: `${language} ${item}` }
   })
 }
 const items = ref<NavigationMenuItem[][]>([
