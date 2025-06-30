@@ -7,10 +7,6 @@ export default defineEventHandler((event) => {
   const sentence = new Sentence(getRequestURL(event).searchParams.get("sentence"));
 
   return {
-    payload: asciifier
-      .asciify(sentence)
-      .getWords()
-      .map((word) => word.getName())
-      .join(" "),
+    payload: asciifier.asciify(sentence).toWords(),
   };
 });
