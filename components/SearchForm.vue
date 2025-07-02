@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 const model = defineModel<string>()
-const props = defineProps<{ buttonLabel?: string }>()
+const props = defineProps<{ buttonLabel?: string, disabled?: boolean, title?: string }>()
 </script>
 <template>
   <form class="w-full max-w-1/3">
@@ -8,9 +8,15 @@ const props = defineProps<{ buttonLabel?: string }>()
       <legend class="p-2">
         <slot />
       </legend>
+      <p v-if="props.disabled">
+        Disabled:
+        <span class="text-red-700"> {{ props.title }} </span>
+      </p>
       <UButtonGroup class="w-full">
-        <UInput v-model.trim="model" required class="w-full" />
-        <UButton class="min-w-fit" type="submit" color="secondary">{{ props.buttonLabel || "Find" }}</UButton>
+        <UInput v-model.trim="model" required class="w-full" :disabled="props.disabled" />
+        <UButton class="min-w-fit" type="submit" color="secondary" :disabled="props.disabled">
+          {{ props.buttonLabel || "Find" }}
+        </UButton>
       </UButtonGroup>
     </fieldset>
   </form>
