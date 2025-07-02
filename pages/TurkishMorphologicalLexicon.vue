@@ -19,7 +19,28 @@ async function findWord(word: string) {
       <SearchForm v-model="searchTerms.word" @submit.prevent="findWord(searchTerms.word)">Word</SearchForm>
     </header>
     <template v-if="search">
-      <div class="flex flex-col items-center">{{ searchResult }}</div>
+      <div class="flex flex-col items-center">
+        <template v-if="searchResult">
+          <p class="my-2">Flags</p>
+          <div class="flex flex-row">
+            <UBadge v-for="flag in searchResult.flags" :key="flag" color="secondary" class="m-1">
+              {{ flag }}
+            </UBadge>
+          </div>
+          <p class="my-2">Morphology</p>
+          <div class="flex flex-row items-center">
+            <template v-for="(morphology, index) in searchResult.morphology.split('+')" :key="index">
+              <span v-if="index != 0">+</span>
+              <UBadge :color="index === 0 ? 'neutral' : 'secondary'" class="">
+                {{ morphology }}
+              </UBadge>
+            </template>
+          </div>
+        </template>
+        <template v-else>
+          No results for {{ search }}
+        </template>
+      </div>
     </template>
   </div>
 </template>
