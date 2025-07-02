@@ -3,7 +3,7 @@ const model = defineModel<string>()
 const props = defineProps<{ buttonLabel?: string }>()
 </script>
 <template>
-  <form class="w-full max-w-1/2">
+  <form class="w-full max-w-1/3">
     <fieldset class="border  border-zinc-200 p-2 rounded-sm ">
       <legend class="p-2">
         <slot />
