@@ -1,6 +1,6 @@
 import { SentiLiteralNet } from "nlptoolkit-sentinet/dist/SentiLiteralNet.js";
-import type { SentiLiteral } from "nlptoolkit-sentinet/dist/SentiLiteral";
-import { PolarityType } from "nlptoolkit-sentinet/dist/PolarityType";
+import type { SentiLiteral } from "nlptoolkit-sentinet/dist/SentiLiteral.js";
+import { PolarityType } from "nlptoolkit-sentinet/dist/PolarityType.js";
 
 const sentiLiteralNet = new SentiLiteralNet();
 

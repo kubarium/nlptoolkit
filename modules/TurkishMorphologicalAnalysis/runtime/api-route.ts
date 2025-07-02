@@ -1,6 +1,6 @@
 import { FsmMorphologicalAnalyzer } from "nlptoolkit-morphologicalanalysis/dist/MorphologicalAnalysis/FsmMorphologicalAnalyzer.js";
 import { Sentence } from "nlptoolkit-corpus/dist/Sentence.js";
-import type { FsmParseList } from "nlptoolkit-morphologicalanalysis/dist/MorphologicalAnalysis/FsmParseList";
+import type { FsmParseList } from "nlptoolkit-morphologicalanalysis/dist/MorphologicalAnalysis/FsmParseList.js";
 
 const fsm = new FsmMorphologicalAnalyzer();
 

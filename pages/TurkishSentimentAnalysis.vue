@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { PolarityType } from 'nlptoolkit-sentinet/dist/PolarityType';
+import { PolarityType } from 'nlptoolkit-sentinet/dist/PolarityType.js';
 
 const searchTerms = reactive({
   sentence: ""

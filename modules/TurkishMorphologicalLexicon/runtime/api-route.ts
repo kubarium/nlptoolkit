@@ -1,5 +1,5 @@
 import { TxtDictionary } from "nlptoolkit-dictionary/dist/Dictionary/TxtDictionary.js";
-import type { Word } from "nlptoolkit-dictionary/dist/Dictionary/Word";
+import type { Word } from "nlptoolkit-dictionary/dist/Dictionary/Word.js";
 
 const turkishDictionary = new TxtDictionary();
 
@@ -10,7 +10,6 @@ export default defineEventHandler((event) => {
   const txtWord = turkishDictionary.getWord(word) as Word;
 
   if (txtWord !== undefined) {
-    // return { payload: txtWord.getMorphology() };
     return { payload: txtWord };
   } else {
     return { payload: word };
