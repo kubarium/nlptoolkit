@@ -9,9 +9,5 @@ export default defineEventHandler((event) => {
 
   const txtWord = turkishDictionary.getWord(word) as Word;
 
-  if (txtWord !== undefined) {
-    return { payload: txtWord };
-  } else {
-    return { payload: word };
-  }
+  return { payload: txtWord || null };
 });

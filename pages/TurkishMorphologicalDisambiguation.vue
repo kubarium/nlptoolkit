@@ -16,8 +16,8 @@ async function analyze(sentence: string) {
   <div class="flex flex-col gap-6 p-6 h-screen">
     <h1 class="text-center text-xl text-sky-600">Turkish Morphological Disambiguation</h1>
     <header class="flex flex-row gap-2 justify-center">
-      <SearchForm v-model="searchTerms.sentence" @submit.prevent="analyze(searchTerms.sentence)"
-        button-label="Disambiguate">
+      <SearchForm v-model="searchTerms.sentence" button-label="Disambiguate"
+        @submit.prevent="analyze(searchTerms.sentence)">
         Sentence</SearchForm>
     </header>
     <template v-if="search">
@@ -35,10 +35,7 @@ async function analyze(sentence: string) {
                 <div v-else class="my-2">
                   <template v-for="(chunk, index) in searchResult[index1].split('+')" :key="index">
                     <span v-if="index != 0">+</span>
-                    <UBadge v-if="index == 0" color="neutral">
-                      {{ chunk }}
-                    </UBadge>
-                    <UBadge v-else color="secondary">
+                    <UBadge :color="index === 0 ? 'neutral' : 'secondary'">
                       {{ chunk }}
                     </UBadge>
                   </template>

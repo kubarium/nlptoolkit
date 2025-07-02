@@ -34,15 +34,12 @@ async function analyze(sentence: string) {
                 <div v-for="(analysis) in searchResult[index]" v-else :key="analysis" class="my-2">
                   <template v-for="(chunk, index) in analysis.split('+')" :key="index">
                     <span v-if="index != 0">+</span>
-                    <UBadge v-if="index == 0" color="neutral">
-                      {{ chunk }}
-                    </UBadge>
-                    <UBadge v-else color="secondary">
+                    <UBadge :color="index === 0 ? 'neutral' : 'secondary'">
                       {{ chunk }}
                     </UBadge>
                   </template>
                 </div>
-                
+
               </dd>
             </div>
           </template>
