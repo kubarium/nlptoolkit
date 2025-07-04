@@ -1,7 +1,9 @@
 import { Sentence } from "nlptoolkit-corpus/dist/Sentence.js";
 import type { Word } from "nlptoolkit-dictionary/dist/Dictionary/Word";
 import type { Literal } from "nlptoolkit-wordnet/dist/Literal.js";
-import { turkishWordNet } from "~/modules/TurkishFrameNet/runtime/api-route";
+import { WordNet } from "nlptoolkit-wordnet/dist/WordNet.js";
+
+const turkishWordNet = new WordNet();
 
 export default defineEventHandler((event) => {
   const sentence = new Sentence(getRequestURL(event).searchParams.get("sentence").toLowerCase());
