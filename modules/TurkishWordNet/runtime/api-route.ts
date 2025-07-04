@@ -1,4 +1,3 @@
-import type { SynSet } from "nlptoolkit-wordnet/dist/SynSet";
 import { WordNet } from "nlptoolkit-wordnet/dist/WordNet.js";
 
 type UnknownTurkishWordNet = {

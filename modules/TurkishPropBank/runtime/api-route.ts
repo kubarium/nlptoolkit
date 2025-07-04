@@ -1,4 +1,4 @@
-import { turkishWordNet } from "~/modules/TurkishFrameNet/runtime/api-route";
+import { WordNet } from "nlptoolkit-wordnet/dist/WordNet.js";
 import { FramesetList } from "nlptoolkit-propbank/dist/FramesetList.js";
 import type { SynSet } from "nlptoolkit-wordnet/dist/SynSet.js";
 
@@ -10,7 +10,7 @@ export type PropBankEntry = {
   function: string;
   description: string;
 };
-
+const turkishWordNet = new WordNet();
 const turkishPropBank = new FramesetList();
 
 export default defineEventHandler((event) => {
@@ -34,7 +34,7 @@ export default defineEventHandler((event) => {
         });
       }
     }
-    
+
     return { payload: payload.length ? payload : null };
   } else if (url.pathname.endsWith("/SynSetIdSearch")) {
     const synset: SynSet = turkishWordNet.getSynSetWithId(url.searchParams.get("synSetId"));
