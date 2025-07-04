@@ -5,7 +5,7 @@ const years = ["1901", "1944", "1955", "1959", "1966", "1969", "1974", "1983", "
 const tabs: TabsItem[] = years.reverse().map((year) => ({ label: year, value: year }))
 
 const searchTerms = reactive({
-  word: "yemek", synonym: "", synSetId: "TUR10-0327720"
+  word: "", synonym: "", synSetId: ""
 })
 const search = ref("")
 const searchResults = ref({})
