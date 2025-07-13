@@ -1,4 +1,7 @@
 <script setup lang='ts'>
+import { taggers } from "~/utils/taggers"
+const tagger = ref("Naive")
+
 const searchTerms = reactive({
   sentence: ""
 })
@@ -8,7 +11,7 @@ const searchResult = ref([])
 async function analyze(sentence: string) {
   search.value = sentence
 
-  const { data } = await useFetch(`/api/EnglishPOSTagger?sentence=${sentence}`)
+  const { data } = await useFetch(`/api/EnglishPOSTagger?sentence=${sentence}&tagger=${tagger.value}`)
   searchResult.value = data.value.payload
 }
 </script>
@@ -16,6 +19,7 @@ async function analyze(sentence: string) {
   <div class="flex flex-col gap-6 p-6 h-screen">
     <h1 class="text-center text-xl text-sky-600">English POS Tagger</h1>
     <header class="flex flex-row gap-2 justify-center">
+      <OptionSelector v-model="tagger" :items="taggers">POS Tagger</OptionSelector>
       <SearchForm v-model="searchTerms.sentence" button-label="Analyze" @submit.prevent="analyze(searchTerms.sentence)">
         Sentence
       </SearchForm>

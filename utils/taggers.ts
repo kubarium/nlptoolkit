@@ -1,0 +1,1 @@
+export const taggers = ["Dummy", "Hmm", "Naive"];
