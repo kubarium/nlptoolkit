@@ -19,6 +19,8 @@
     "@tailwindcss/vite": "^4.1.10",
     "@unhead/vue": "^2.0.10",
     "eslint": "^9.29.0",
+    "nlptoolkit-annotatedsentence": "^1.0.6",
+    "nlptoolkit-annotatedtree": "^1.0.3",
     "nlptoolkit-classification": "^1.0.7",
     "nlptoolkit-corpus": "^1.0.9",
     "nlptoolkit-datastructure": "^1.0.4",

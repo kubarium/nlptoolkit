@@ -35,6 +35,12 @@ importers:
       eslint:
         specifier: ^9.29.0
         version: 9.29.0(jiti@2.4.2)
+      nlptoolkit-annotatedsentence:
+        specifier: ^1.0.6
+        version: 1.0.6
+      nlptoolkit-annotatedtree:
+        specifier: ^1.0.3
+        version: 1.0.3
       nlptoolkit-classification:
         specifier: ^1.0.7
         version: 1.0.7
