@@ -9,7 +9,7 @@ import type { PosTagger } from "nlptoolkit-postagger/dist/PosTagger";
 //To expose a new tagger, remember to add it to utils/taggers.ts so front-end can use it
 const taggers = {
   "Dummy": new DummyPosTagger(),
-  "Hmm": new HmmPosTagger(),
+  "HMM": new HmmPosTagger(),
   "Naive": new NaivePosTagger(),
 };
 Object.values(taggers).forEach((tagger: PosTagger) => {

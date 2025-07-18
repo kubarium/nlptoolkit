@@ -1,1 +1,1 @@
-export const taggers = ["Dummy", "Hmm", "Naive"];
+export const taggers = ["Dummy", "HMM", "Naive"];
