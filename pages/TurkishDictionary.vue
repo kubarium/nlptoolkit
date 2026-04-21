@@ -5,11 +5,22 @@ const searchTerms = reactive({
 const search = ref()
 const searchResult = ref()
 
+// Dictionary corpus is all lowercase (even proper nouns like "google"), so force the
+// input textbox to lowercase as the user types. Turkish locale keeps "İ" → "i" and
+// "I" → "ı" correct (JS default locale mishandles the dotted-I rules).
+watch(() => searchTerms.word, (val) => {
+  const lowered = val.toLocaleLowerCase("tr")
+  if (lowered !== val) searchTerms.word = lowered
+})
+
 async function findWord(word: string) {
   search.value = word
-
-  const { data } = await useFetch(`/api/TurkishDictionary?word=${word}`)
-  searchResult.value = data.value.payload
+  // $fetch (not useFetch): imperative, no cache, no SSR reactivity. useFetch inside
+  // an event handler was returning stale/partial responses on rapid re-submits.
+  const { payload } = await $fetch<{ payload: string }>(
+    `/api/TurkishDictionary?word=${encodeURIComponent(word)}`
+  )
+  searchResult.value = payload
 }
 </script>
 <template>

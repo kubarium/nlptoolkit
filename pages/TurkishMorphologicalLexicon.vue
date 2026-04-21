@@ -27,15 +27,17 @@ async function findWord(word: string) {
               {{ flag }}
             </UBadge>
           </div>
-          <p class="my-2">Morphology</p>
-          <div class="flex flex-row items-center">
-            <template v-for="(morphology, index) in searchResult.morphology.split('+')" :key="index">
-              <span v-if="index != 0">+</span>
-              <UBadge :color="index === 0 ? 'neutral' : 'secondary'" class="">
-                {{ morphology }}
-              </UBadge>
-            </template>
-          </div>
+          <template v-if="searchResult.morphology">
+            <p class="my-2">Morphology</p>
+            <div class="flex flex-row items-center">
+              <template v-for="(morphology, index) in searchResult.morphology.split('+')" :key="index">
+                <span v-if="index != 0">+</span>
+                <UBadge :color="index === 0 ? 'neutral' : 'secondary'" class="">
+                  {{ morphology }}
+                </UBadge>
+              </template>
+            </div>
+          </template>
         </template>
         <template v-else>
           No results for {{ search }}

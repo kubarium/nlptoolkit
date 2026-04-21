@@ -1,0 +1,51 @@
+name: Deploy to Guzel VPS
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:  # allow manual "Run workflow" from the Actions tab
+
+# The deploy SSH key is command-restricted on the VPS — it can only run
+# /root/deploy.sh — so even a leaked key cannot open a shell.
+# Secrets required on the repo:
+#   DEPLOY_SSH_KEY  - private key (ed25519) matching /root/.ssh/authorized_keys entry
+#   VPS_HOST_KEY    - a single known_hosts line (from ssh-keyscan -t ed25519 <host>)
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy-guzel
+      cancel-in-progress: false
+    timeout-minutes: 10
+
+    steps:
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          echo "${{ secrets.VPS_HOST_KEY }}" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Trigger deploy
+        run: |
+          # The key is pinned to command="/root/deploy.sh" on the server,
+          # so whatever we pass here is ignored. We pass `true` as a no-op.
+          ssh -o IdentitiesOnly=yes \
+              -i ~/.ssh/id_ed25519 \
+              -o UserKnownHostsFile=~/.ssh/known_hosts \
+              root@104.247.163.162 true
+
+      - name: Smoke test
+        run: |
+          # Poll the public endpoint until it returns 200 (startup ~30-60s).
+          for i in {1..60}; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 4 http://104.247.163.162:3000/ || true)
+            echo "attempt $i: HTTP $code"
+            if [ "$code" = "200" ]; then exit 0; fi
+            sleep 3
+          done
+          echo "::error::App did not return 200 within ~3 minutes"
+          exit 1

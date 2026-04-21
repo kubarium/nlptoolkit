@@ -1,0 +1,8 @@
+*.sh text eol=lf
+Dockerfile text eol=lf
+
+# Data files (wordnets, dictionaries, corpora) must stay LF. The
+# nlptoolkit-dictionary loader splits on "\n" and uses the last token on each
+# line as a flag, so trailing CR breaks flag lookups like isProperNoun().
+*.txt text eol=lf
+*.xml text eol=lf
